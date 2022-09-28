@@ -9,7 +9,7 @@
     <header>
       <base-card>
         <h2>Interested? Reach Out now!</h2>
-        <base-button link to="contactLink">contact</base-button>
+        <base-button link :to="contactLink">contact</base-button>
       </base-card>
     </header>
     <router-view></router-view>
@@ -49,7 +49,7 @@ export default {
       return this.selectedCoach.description;
     },
     contactLink() {
-      return this.$rougte.path + '/' + this.id + '/contact';
+      return this.$route.path + '/contact';
     },
   },
   created() {
