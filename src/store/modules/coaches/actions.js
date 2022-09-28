@@ -1,7 +1,7 @@
 export default {
-  registerCoach(context, data) {
+  async registerCoach(context, data) {
+    const userId = context.rootGetters.userId;
     const coachData = {
-      id: context.rootGetters.userId,
       firstName: data.first,
       lastName: data.last,
       description: data.desc,
@@ -9,6 +9,24 @@ export default {
       areas: data.areas,
     };
 
-    context.commit('registerCoach', coachData);
+    // Using put to indicate to Firebase to overwrite the data
+    const response = await fetch(
+      `https://udemy-vue-s16-main-prj-default-rtdb.firebaseio.com/coaches/${userId}.json`,
+      {
+        method: 'PUT',
+        body: JSON.stringify(coachData),
+      }
+    );
+
+    // const responseData = await response.json();
+
+    if (!response.ok) {
+      // error ...
+    }
+
+    context.commit('registerCoach', {
+      ...coachData,
+      id: userId,
+    });
   },
 };
