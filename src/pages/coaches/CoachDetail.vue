@@ -1,30 +1,32 @@
 <template>
-  <section>
-    <base-card>
-      <h2>{{ fullName }}</h2>
-      <h3>${{ rate }}/hour</h3>
-    </base-card>
-  </section>
-  <section>
-    <header>
+  <div>
+    <section>
       <base-card>
-        <h2>Interested? Reach Out now!</h2>
-        <base-button link :to="contactLink">contact</base-button>
+        <h2>{{ fullName }}</h2>
+        <h3>${{ rate }}/hour</h3>
       </base-card>
-    </header>
-    <router-view></router-view>
-  </section>
-  <section>
-    <base-card>
-      <base-badge
-        v-for="area in areas"
-        :key="area"
-        :type="area"
-        :title="area"
-      ></base-badge>
-      <p>{{ description }}</p>
-    </base-card>
-  </section>
+    </section>
+    <section>
+      <header>
+        <base-card>
+          <h2>Interested? Reach Out now!</h2>
+          <base-button link :to="contactLink">contact</base-button>
+        </base-card>
+      </header>
+      <router-view></router-view>
+    </section>
+    <section>
+      <base-card>
+        <base-badge
+          v-for="area in areas"
+          :key="area"
+          :type="area"
+          :title="area"
+        ></base-badge>
+        <p>{{ description }}</p>
+      </base-card>
+    </section>
+  </div>
 </template>
 
 <script>
