@@ -9,9 +9,12 @@ export default {
       areas: data.areas,
     };
 
+    const token = context.rootGetters.token;
+
     // Using put to indicate to Firebase to overwrite the data
     const response = await fetch(
-      `https://udemy-vue-s16-main-prj-default-rtdb.firebaseio.com/coaches/${userId}.json`,
+      `https://udemy-vue-s16-main-prj-default-rtdb.firebaseio.com/coaches/${userId}.json?auth=` +
+        token,
       {
         method: 'PUT',
         body: JSON.stringify(coachData),
