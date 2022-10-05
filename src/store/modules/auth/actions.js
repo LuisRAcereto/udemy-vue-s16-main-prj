@@ -15,12 +15,11 @@ export default {
   },
   async auth(context, payload) {
     const mode = payload.mode;
-    let url =
-      'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCzGYH-uqveqCZY1CWcOBmsj0KEObKLlZI';
+    const apiKey = context.getters.firebaseKey;
+    let url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${apiKey}`;
 
     if (mode === 'signup') {
-      url =
-        'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCzGYH-uqveqCZY1CWcOBmsj0KEObKLlZI';
+      url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${apiKey}`;
     }
 
     const response = await fetch(url, {
@@ -42,8 +41,8 @@ export default {
       throw error;
     }
 
-    // const expiresIn = +responseData.expiresIn * 1000;
-    const expiresIn = 5000;
+    const expiresIn = +responseData.expiresIn * 1000;
+    // const expiresIn = 5000;
     const expirationDate = new Date().getTime() + expiresIn;
 
     localStorage.setItem('token', responseData.idToken);

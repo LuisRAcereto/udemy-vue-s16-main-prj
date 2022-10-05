@@ -11,4 +11,7 @@ export default {
   didAutoLogout(state) {
     return state.didAutoLogout;
   },
+  firebaseKey(state) {
+    return state.firebaseKey;
+  },
 };

@@ -8,6 +8,7 @@ export default {
       userId: null,
       token: null,
       didAutoLogout: false,
+      firebaseKey: process.env.VUE_APP_FIREBASEKEY,
     };
   },
   mutations: authMutations,
